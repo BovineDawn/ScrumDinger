@@ -8,7 +8,10 @@ import SwiftUI
 
 struct DetailEditView: View {
     @Binding var scrum: DailyScrum
+    let saveEdits: (DailyScrum) -> Void
+    
     @State private var attendeeName = ""
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         Form {
@@ -45,6 +48,19 @@ struct DetailEditView: View {
                             .accessibilityLabel("Add attendee")
                     }
                     .disabled(attendeeName.isEmpty)
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction){
+                Button("Done") {
+                    saveEdits(scrum)
+                    dismiss()
                 }
             }
         }

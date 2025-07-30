@@ -21,44 +21,52 @@ struct MeetingView: View {
                 .fill(scrum.theme.mainColor)
             VStack {
                 MeetingHeaderView(secondsElapsed: scrumTimer.secondsElapsed, secondsRemaining: scrumTimer.secondsRemaining, theme: scrum.theme)
-//                ProgressView(value: 5, total: 15)
-//                HStack {
-//                    VStack(alignment: .leading) {
-//                        Text("Seconds Elapsed")
-//                            .font(.caption)
-//                        Label("300", systemImage: "hourglass.tophalf.fill")
-//                    }
-//                    Spacer()
-//                    VStack(alignment: .trailing) {
-//                        Text("Seconds Remaining")
-//                            .font(.caption)
-//                        Label("600", systemImage: "hourglass.bottomhalf.fill")
-//                    }
-//                }
-//                .accessibilityElement(children: .ignore)
-//                .accessibilityLabel("Time remaining")
-//                .accessibilityValue("10 minutes")
+                //                ProgressView(value: 5, total: 15)
+                //                HStack {
+                //                    VStack(alignment: .leading) {
+                //                        Text("Seconds Elapsed")
+                //                            .font(.caption)
+                //                        Label("300", systemImage: "hourglass.tophalf.fill")
+                //                    }
+                //                    Spacer()
+                //                    VStack(alignment: .trailing) {
+                //                        Text("Seconds Remaining")
+                //                            .font(.caption)
+                //                        Label("600", systemImage: "hourglass.bottomhalf.fill")
+                //                    }
+                //                }
+                //                .accessibilityElement(children: .ignore)
+                //                .accessibilityLabel("Time remaining")
+                //                .accessibilityValue("10 minutes")
                 Circle()
                     .strokeBorder(lineWidth: 24)
                 MeetingFooterView(speakers: scrumTimer.speakers, skipAction: scrumTimer.skipSpeaker)
-                }
-            }
-            .padding()
-            .foregroundColor(scrum.theme.accentColor)
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendeeNames: scrum.attendees.map { $0.name})
-                scrumTimer.speakerChangedAction = {
-                    player.seek(to: .zero)
-                }
-                scrumTimer.startScrum()
-            }
-            .onDisappear {
-                scrumTimer.stopScrum()
             }
         }
+        .padding()
+        .foregroundColor(scrum.theme.accentColor)
+        .onAppear {
+            startScrum()
+        }
+        .onDisappear {
+            endScrum()
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
-
+    private func startScrum() {
+        scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendeeNames: scrum.attendees.map { $0.name})
+        scrumTimer.speakerChangedAction = {
+            player.seek(to: .zero)
+        }
+        scrumTimer.startScrum()
+    }
+    
+    private func endScrum() {
+        scrumTimer.stopScrum()
+        let newHistory = History(attendees: scrum.attendees)
+        scrum.history.insert(newHistory, at: 0)
+    }
+}
 
 #Preview {
     @Previewable @State var scrum = DailyScrum.sampleData[0]
