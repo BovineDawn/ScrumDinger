@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FF9B27B2E37D1B6001EA6A4 /* ThemeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF9B27A2E37D1B6001EA6A4 /* ThemeKit */; };
+		3FF9B31D2E381A77001EA6A4 /* TimerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF9B31C2E381A77001EA6A4 /* TimerKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF9B27B2E37D1B6001EA6A4 /* ThemeKit in Frameworks */,
+				3FF9B31D2E381A77001EA6A4 /* TimerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +143,7 @@
 			name = Scrum;
 			packageProductDependencies = (
 				3FF9B27A2E37D1B6001EA6A4 /* ThemeKit */,
+				3FF9B31C2E381A77001EA6A4 /* TimerKit */,
 			);
 			productName = Scrum;
 			productReference = 3FF9B24F2E37CF75001EA6A4 /* Scrum.app */;
@@ -226,6 +229,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3FF9B2792E37D1B6001EA6A4 /* XCLocalSwiftPackageReference "../ThemeKit" */,
+				3FF9B31B2E381A77001EA6A4 /* XCLocalSwiftPackageReference "../../TimerKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FF9B2502E37CF75001EA6A4 /* Products */;
@@ -596,12 +600,20 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../ThemeKit;
 		};
+		3FF9B31B2E381A77001EA6A4 /* XCLocalSwiftPackageReference "../../TimerKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../TimerKit;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		3FF9B27A2E37D1B6001EA6A4 /* ThemeKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ThemeKit;
+		};
+		3FF9B31C2E381A77001EA6A4 /* TimerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimerKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
